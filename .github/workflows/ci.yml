@@ -13,8 +13,9 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
+          coverage: xdebug
       - run: composer install --no-interaction
-      - run: vendor/bin/phpunit tests
+      - run: vendor/bin/phpunit --coverage-clover=coverage.xml tests
       - name: Ensure SonarQube Cloud project exists
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
